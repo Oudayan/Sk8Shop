@@ -1,0 +1,60 @@
+<!--
+/**
+ *@package	OpenCart
+ *@file 	/catalog/view/template/extension/enchere/enchere.twig 
+ *@author 	Yuliya et Oudayan
+ *@version 	1.0
+ *@date 	16 décembre 2017
+ *@brief 	Vue du module Enchère côte client
+ */
+-->
+<div class="row">
+	{% if error_authorisation %}
+	<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_authorisation }}
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+	</div>
+	{% endif %}
+	
+	{% for product in products %}
+	<div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
+	<div class="product-thumb transition">
+	  <div class="image"><!--<a href="{{ product.href }}">--><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /><!--</a>--></div>
+	  <div class="caption">
+		<h4 class="text-muted"><!--<a href="{{ product.href }}">-->{{ product.name }}<!--</a>--></h4>
+		<p>{{ product.description }}</p>		
+		<form action="{{ action }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+		<table class="table table-bordered table-hover">
+			<tbody>
+				<tr>
+				{% if product.date_fin %}     
+					<td><label> {{date_fin}}</label></td> <td class="success">{{ product.date_fin}}</td>    
+				{% endif %}
+				</tr>
+				<tr>	
+				{% if product.prix_depart %}        
+					<td><label>{{prix_depart}}</label></td> <td class="success"> {{ product.prix_depart}}  </td>    
+				{% endif %}	
+				</tr>					
+				<tr>
+					<td><label>{{prix_max}}</label></td> <td class="danger"> {{product.prix_max}}</td>
+				</tr>
+                <fieldset> 
+                    <tr>	
+                        <td><label>{{prix_input}}</label></td> <td class="success"><input type="text" name="prix_input"></td>
+                    </tr>
+                </fieldset>
+			</tbody>
+		</table>
+			<input type="hidden" name="enchere_id" value="{{product.enchere_id}}">
+			<input type="submit" name="btn_bid" value="{{ btnEnvoyer }}">			
+		</form>		
+	  </div>
+	<div class="button-group">
+	   <!--   <button type="button" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button> -->
+		<button type="button" style="width:50%" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
+		<button type="button" style="width:50%" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
+	  </div>
+	</div>
+	</div>
+	{% endfor %}
+</div>

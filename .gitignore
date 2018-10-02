@@ -1,0 +1,3 @@
+.DS_Store
+// Clearer la cache après un changement de goit ignore.
+git rm -r --cached .

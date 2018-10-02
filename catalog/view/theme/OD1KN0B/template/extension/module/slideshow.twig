@@ -1,0 +1,45 @@
+<!--
+	file:          slideshow.twig
+    path:          /catalog/view/theme/OD1KN0B/template/extension/module/
+	description:   This is the template for the slideshow module
+	authors:       Mathieu Sylvestre et Oudayan Dutta
+-->
+<div class="swiper-viewport">
+    <div id="slideshow{{ module }}" class="swiper-container">
+        <div class="swiper-wrapper">
+        {% for banner in banners %}
+            <div class="swiper-slide text-center">
+                <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+                {% if banner.link %}
+                <div class="slide-text">
+                    <h2 class="slide-title">{{ banner.title }}</h2>
+                    <a href="{{ banner.link }}" class="btn btn-danger">{{ button_details|upper }}</a>
+                </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="swiper-pagination slideshow{{ module }}">
+    </div>
+    <div class="swiper-pager">
+        <div class="swiper-button-next">
+        </div>
+        <div class="swiper-button-prev">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#slideshow{{ module }}').swiper({
+        mode: 'horizontal',
+        slidesPerView: 1,
+        pagination: '.slideshow{{ module }}',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: true,
+        loop: true
+    });
+</script>

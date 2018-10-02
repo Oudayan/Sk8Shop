@@ -1,0 +1,28 @@
+{{ header }} {{ column_left }} {{ column_right }}
+<div id="content" class="container">
+	{{ content_top }}
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			<li> <!--{{ breadcrumb['test'] }}--> <a href=" {{ breadcrumb['href']	}}"> {{ breadcrumb['text'] }}</a></li>
+		{% endfor %}
+	</ul>
+	<h1>{{ heading_title }}</h1>
+	<center>
+		<table style="width:100%; border-collapse: collapse; border-left: 1px solid #eeeeee; border-right: 1px solid #eeeeee;">
+			<tr style="font-weight:bold;">
+				<td style="width:30%; padding:10px 0px 10px 10px;	background:#eeeeee; text-align:left;">{{ text_title }}</td>
+				<td style="width:50%; padding:10px 0px 10px 10px;	background:#eeeeee; text-align:left;">{{ text_description }}</td>
+				<td style="width:10%; padding:10px 10px 10px 10px; background:#eeeeee; text-align:right;"></td>
+			</tr>
+			{% for news in all_news %}
+				<tr>
+					<td style="padding:10px 0px 10px 10px; text-align:left;	border-bottom: 1px solid #eeeeee;">{{ news['title'] }}</td>
+					<td style="padding:10px 0px 10px 10px; text-align:left;	border-bottom: 1px solid #eeeeee; border-left: 1px solid #eeeeee;">{{ news['description'] }}</td>
+					<td style="padding:10px 10px 10px 10px; text-align:center;	border-bottom: 1px solid #eeeeee; border-left: 1px solid #eeeeee;"><a href="{{ news['view']}}">{{ text_view }}</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+	</center>
+	{{ content_bottom }}
+</div>
+{{ footer }}

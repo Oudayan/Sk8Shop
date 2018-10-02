@@ -1,0 +1,25 @@
+<!--
+	file:          category.twig
+    path:          /catalog/view/theme/OD1KN0B/template/extension/module/
+	description:   This is the template for the category module
+	authors:       Mathieu Sylvestre et Oudayan Dutta
+-->
+<div id="category-module">
+  {% for category in categories %}
+    {% if category.category_id == category_id %} 
+      <p class="lead" >{{ category.name }}</p>
+      <hr style="margin-top: 0;">
+      {% if category.children %}
+        {% for child in category.children %}
+          {% if child.category_id == child_id %}
+            <p><a href="{{ child.href }}" class="active">{{ child.name }}</a></p>
+          {% else %} 
+            <p><a href="{{ child.href }}" class="">{{ child.name }}</a></p>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% else %}
+      <p><a href="{{ category.href }}" class="">{{ category.name }}</a></p>
+    {% endif %}
+  {% endfor %}
+</div>

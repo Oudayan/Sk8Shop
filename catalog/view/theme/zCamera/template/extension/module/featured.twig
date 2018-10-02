@@ -1,0 +1,97 @@
+<div class="heading"><h3>{{ heading_title }}</h3><hr class="gradient-divider"></hr></div>
+<div class="product-content">
+	<div class="row">
+	 {% for product in products %}
+	  <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
+		<div class="product-thumb transition">
+		  <div class="nd-wrap nd-style-1">
+			<center><a href="{{ product.href }}">
+			  <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" />
+			</a></center>
+			<div class="nd-content">
+				<div class="nd-content_inner">
+					<div class="nd-content_inner1">
+						<h4 class="nd-title"><span><a href="{{ product.href }}">{{ product.name }}</a></span></h4>
+						<span class="nd-icon">
+							<span class="fa fa-shopping-cart fa-fw" data-toggle="tooltip" title="{{ button_cart }}" onclick="cart.add('{{ product.product_id }}');"></span>
+						</span>
+						<span class="nd-icon">
+							<span class="fa fa-heart fa-fw" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"></span>
+						</span>
+						<span class="nd-icon">
+							<span class="fa fa-exchange fa-fw" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"></span>
+						</span>
+					</div>					
+				</div>				
+			</div>
+		  </div>
+		  <div class="caption">
+			<p>{{ product.description }}</p>
+			{% if product.rating %}
+			<div class="rating">
+			  {% for i in 5 %}
+			  {% if product.rating < i %}
+			  <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+			  {% else %}
+			  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+			  {% endif %}
+			  {% endfor %}
+			</div>
+			{% endif %}
+			{% if product.price %}
+			<p class="price">
+			  {% if not product.special %}
+			  {{ product.price }}
+			  {% else %}
+			  <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+			  {% endif %}
+			  {% if product.tax %}
+			  <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+			  {% endif %}
+			</p>
+			{% endif %}
+		  </div>
+		</div>
+	  </div>
+	  {% endfor %}
+	  
+	  {% for product in products %}
+		  <div class="product-layout-col">
+		   <div class="product-thumb transition">
+			<div class="col-sm-4">
+			  <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a></div>
+			</div>
+			<div class="col-sm-8">
+			  <div class="caption">
+				<h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+				{% if product.rating %}
+				<div class="rating">
+				  {% for i in 5 %}
+				  {% if product.rating < i %}
+				  <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+				  {% else %}
+				  <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+				  {% endif %}
+				  {% endfor %}
+				</div>
+				{% endif %}
+				{% if product.price %}
+				<p class="price">
+				  {% if not product.special %}
+				  {{ product.price }}
+				  {% else %}
+				  <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+				  {% endif %}
+				  {% if product.tax %}
+				  <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+				  {% endif %}
+				</p>
+				{% endif %}
+			  </div>
+			 </div>
+		   </div>
+		  </div>
+	  {% endfor %}
+	  
+	</div>
+</div>

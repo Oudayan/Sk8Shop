@@ -1,0 +1,63 @@
+<!--
+	file:          featured.twig
+    path:          /catalog/view/theme/OD1KN0B/template/extension/module/
+	description:   This is the template for the featured module
+	authors:       Mathieu Sylvestre et Oudayan Dutta
+-->
+<div class="container-fluid text-center">
+    <h3 class="text-center"><span class="redline"></span>{{ heading_title|upper }}<span class="redline"></span></h3>
+    <!-- 
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-8 bg-danger bs-1">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 bg-success bs-2">
+                </div>
+                <div class="col-sm-4 bg-info bs-3">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 bg-warning bs-4">
+        </div>
+    </div>
+    -->
+    <div class="row feat-all">
+    {% for product in products %}
+        {% if loop.index == (1) %}
+        <div class="col-md-8">
+            {% set class = 'col-sm-8 feat-1' %}
+            <div class="row">
+        {% endif %}
+        {% if loop.index == (2) %}
+            <div class="row">
+            {% set class = 'col-sm-4 feat-2' %}
+        {% endif %}
+        {% if loop.index == (3) %}
+            {% set class = 'col-sm-4 feat-3' %}
+        {% endif %}
+        {% if loop.index == (4) %}
+            {% set class = 'col-sm-4 feat-4' %}
+        {% endif %}
+                <div class="feat {{ class }}">
+                    <div class="feat-product">
+                        <h4>{{ product.name }}</h4>
+                        <p>{{ product.description }}</p>
+                        <h5><a href="{{ product.href }}">{{ button_details|upper }}</a></h5>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(".feat-{{ loop.index }}").css("background", "url('{{ product.thumb }}') center center no-repeat"); 
+                </script>
+        {% if loop.index == (1) %}
+            </div>
+        {% endif %}
+        {% if loop.index == (3) %}
+            </div>
+        </div>
+        {% endif %}    
+    {% endfor %}
+    </div>
+</div>

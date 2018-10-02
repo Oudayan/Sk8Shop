@@ -1,0 +1,42 @@
+{{ header }}
+<div id="news_list" class="container">
+    <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+    </ul>
+    <div class="row">
+        {{ column_left }}
+        {% if column_left and column_right %}
+            {% set class = 'col-sm-6' %}
+        {% elseif column_left or column_right %}
+            {% set class = 'col-sm-9' %}
+        {% else %}
+            {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div id="content" class="{{ class }}">
+            {{ content_top }}
+            <div>
+                <h1>{{ heading_title }}</h1>
+                <center>
+                    <table style="width:100%; border-collapse: collapse; border-left: 1px solid #eeeeee; border-right: 1px solid #eeeeee;">
+                        <tr style="font-weight:bold;">
+                            <td style="width:30%; padding:10px 0px 10px 10px; background:#eeeeee; text-align:left;">{{ text_title }}</td>
+                            <td style="width:50%; padding:10px 0px 10px 10px; background:#eeeeee; text-align:left;">{{ text_description }}</td>
+                            <td style="width:10%; padding:10px 10px 10px 10px; background:#eeeeee; text-align:right;"></td>
+                        </tr>
+                        {% for news in all_news %}
+                        <tr>
+                            <td style="padding:10px 0px 10px 10px; text-align:left; border-bottom: 1px solid #eeeeee;">{{ news['title'] }}</td>
+                            <td style="padding:10px 0px 10px 10px; text-align:left; border-bottom: 1px solid #eeeeee; border-left: 1px solid #eeeeee;">{{ news['description'] }}</td>
+                            <td style="padding:10px 10px 10px 10px; text-align:right; border-bottom: 1px solid #eeeeee; border-left: 1px solid #eeeeee;"><a href="{{ news['view']}}">{{ text_view }}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </center>
+            </div>
+            {{ content_bottom }}
+        </div>
+    </div>
+</div>
+{{ footer }}

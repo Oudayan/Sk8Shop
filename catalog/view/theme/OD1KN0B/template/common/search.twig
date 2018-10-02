@@ -1,0 +1,22 @@
+<!--
+	file:          search.twig
+    path:          /catalog/view/theme/OD1KN0B/template/common/
+	description:   This is the template for the search on menu on every page
+	authors:       Mathieu Sylvestre et Oudayan Dutta
+	last modified: 2018-01-19
+-->
+<div id="search">
+    <div id="search-box">
+        <span class="input-group">
+            <input type="text" name="search" value="{{ search }}" placeholder="{{ text_search }}" class="form-control" />
+            <span class="input-group-btn"><button type="button" class="btn btn-default">{{ text_search }}</button></span>
+        </span>
+    </div>
+    <a class="fa fa-search" data-toggle="collapse" href="#search-box" role="button" aria-expanded="false" aria-controls="search-box"></a>
+</div>
+<script>
+    $("[data-toggle='toggle']").click(function() {
+        var selector = $(this).data("target");
+        $(selector).toggleClass('in');
+    });
+</script>

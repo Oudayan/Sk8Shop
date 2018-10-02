@@ -1,0 +1,26 @@
+<!--
+	file:          home.twig
+    path:          /catalog/view/theme/OD1KN0B/template/common/
+	description:   This is the template for the home page. It loads the content according to the module choosen by the user
+	authors:       Mathieu Sylvestre et Oudayan Dutta
+	last modified: 2018-01-19
+-->
+{{ header }}
+<div id="common-home" class="container-fluid">
+    <div class="row">
+        {{ column_left }}
+        {% if column_left and column_right %}
+            {% set class = 'col-sm-6' %}
+        {% elseif column_left or column_right %}
+            {% set class = 'col-sm-9' %}
+        {% else %}
+            {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div id="content" class="{{ class }}">
+            {{ content_top }}
+            {{ content_bottom }}
+        </div>
+    {{ column_right }}
+    </div>
+</div>
+{{ footer }}

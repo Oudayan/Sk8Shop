@@ -1,0 +1,118 @@
+<!--
+	file:          footer.twig
+    path:          /catalog/view/theme/OD1KN0B/template/common/
+	description:   This is the template for the footer
+	authors:       Mathieu Sylvestre et Oudayan Dutta
+	last modified: 2018-01-19
+-->
+<footer>
+    <div class="container-fluid">
+        <div class="row site-features">
+            <section id="site-features">
+                <div class="col-sm-6 col-md-3">
+                    <i class="fas fa-lock"></i>
+                    <p><strong>{{ secure_payment_title }}</strong></p>
+                    <p>{{ secure_payment_text }}</p>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <i class="fab fa-dropbox"></i>
+                    <p><strong>{{ delivery_title }}</strong></p>
+                    <p>{{ delivery_text }}</p>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <i class="fas fa-exchange-alt"></i>
+                    <p><strong>{{ exchange_title }}</strong></p>
+                    <p>{{ exchange_text }}</p>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <i class="far fa-handshake"></i>
+                    <p><strong>{{ customer_service_title }}</strong></p>
+                    <p>{{ customer_service_text }}</p>
+                </div>
+            </section>
+        </div>
+        <div class="row">
+            {# logo #}
+            <div class="col-sm-4 col-lg-2">
+                <div id="logo">
+                    {% if logo %}
+                    <a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a> {% else %}
+                    <h1><a href="{{ home }}">{{ name }}</a></h1>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if informations %} {# informations #}
+            <div class="col-sm-4 col-lg-2">
+                <h5>{{ text_information|upper }}</h5>
+                <ul class="list-unstyled">
+                    {% for information in informations %}
+                    <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {# services #}
+            <div class="col-sm-4 col-lg-2">
+                <h5>{{ text_service|upper }}</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+                    <li><a href="{{ return }}">{{ text_return }}</a></li>
+                    <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+                </ul>
+            </div>
+
+            {# newsletter #}
+            <div class="col-sm-12 col-lg-6">
+                <div id='newsletter' class="form-group">
+                    <h5>{{ title_email_input|upper }}</h5>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-9">
+                            <div class="embed-submit-field">
+                                <input type="email" class="form-control input-lg" placeholder="{{ newsletter_input_placeholder }}" />
+                                <button onclick="fakeconfirmation()"><i class="far fa-envelope"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-3">
+                            <p>{{ newsletter_side_text }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer-social-bar">
+                    <i class="fab fa-facebook-square"></i>
+                    <i class="fab fa-twitter-square"></i>
+                    <i class="fab fa-google-plus-square"></i>
+                    <i class="fab fa-pinterest-square"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-tumblr-square"></i>
+                </div>
+            </div>
+        </div>
+        <p>{{ powered }}</p>
+    </div>
+</footer>
+<script type='text/javascript'>
+    function fakeconfirmation() {
+        if ($('#newsletter input').val().length > 5) {
+            $('#newsletter input').val("");
+            $('#newsletter input').attr("placeholder", "{{ newsletter_input_placeholder_confirmation }}");
+            $('#newsletter input').css({
+                "border-color": "#28a745"
+            });
+        }
+    }
+
+</script>
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+</body>
+
+</html>

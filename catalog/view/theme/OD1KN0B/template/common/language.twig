@@ -1,0 +1,32 @@
+<!--
+	file:          language.twig
+    path:          /catalog/view/theme/OD1KN0B/template/common/
+	description:   This is the template for the top menu item that is the language selector
+	authors:       Mathieu Sylvestre et Oudayan Dutta
+	last modified: 2018-01-19
+-->
+{% if languages|length > 1 %}
+<div class="pull-right">
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-language">
+        <div class="btn-group">
+            <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                {% for language in languages %}
+                {% if language.code == code %} 
+                <img src="catalog/language/{{ language.code }}/{{ language.code }}.png" alt="{{ language.name }}" title="{{ language.name }}" class="hidden-sm hidden-md hidden-lg hidden-xl">
+                {% endif %}
+                {% endfor %}
+                <span class="hidden-xs">{{ text_language }}</span>&nbsp;<i class="fa fa-caret-down"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+                {% for language in languages %}
+                <li>
+                    <button class="btn btn-link btn-block language-select" type="button" name="{{ language.code }}"><img src="catalog/language/{{ language.code }}/{{ language.code }}.png" alt="{{ language.name }}" title="{{ language.name }}" /> {{ language.name }}</button>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <input type="hidden" name="code" value="" />
+        <input type="hidden" name="redirect" value="{{ redirect }}" />
+    </form>
+</div>
+{% endif %}
